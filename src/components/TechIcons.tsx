@@ -1,6 +1,5 @@
 import React from "react";
 import { SiReact, SiVite, SiTypescript, SiPython, SiFlask, SiDjango, SiFirebase, SiSupabase, SiSqlite, SiNginx, SiDocker, SiGithub } from "react-icons/si";
-
 const items = [
   { name: "React", Icon: SiReact },
   { name: "Vite", Icon: SiVite },
@@ -15,7 +14,6 @@ const items = [
   { name: "Docker", Icon: SiDocker },
   { name: "GitHub", Icon: SiGithub },
 ];
-
 export function TechIcons() {
   return (
     <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -33,3 +31,5 @@ export function TechIcons() {
     </div>
   );
 }
+
+export default TechIcons;

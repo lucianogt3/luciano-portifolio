@@ -1,5 +1,4 @@
 import React from "react";
-
 export function Section({
   id,
   title,
@@ -36,3 +35,5 @@ export function Section({
     </section>
   );
 }
+
+export default Section;

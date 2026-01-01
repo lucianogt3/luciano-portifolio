@@ -1,12 +1,10 @@
 import React from "react";
-
 type Props = {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   align?: "left" | "center";
 };
-
 export const SectionTitle: React.FC<Props> = ({
   eyebrow,
   title,
@@ -14,7 +12,6 @@ export const SectionTitle: React.FC<Props> = ({
   align = "left",
 }) => {
   const alignCls = align === "center" ? "text-center items-center" : "text-left items-start";
-
   return (
     <div className={`flex flex-col gap-2 ${alignCls}`}>
       {eyebrow ? (
@@ -23,11 +20,9 @@ export const SectionTitle: React.FC<Props> = ({
           <span>{eyebrow}</span>
         </div>
       ) : null}
-
       <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
         {title}
       </h2>
-
       {subtitle ? (
         <p className="max-w-3xl text-sm sm:text-base leading-relaxed text-slate-200/80">
           {subtitle}
@@ -36,3 +31,5 @@ export const SectionTitle: React.FC<Props> = ({
     </div>
   );
 };
+
+export default SectionTitle;

@@ -13,19 +13,15 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
-
 type RadarPoint = { area: string; score: number };
 type BarPoint = { name: string; value: number };
-
 const card =
   "rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl shadow-[0_0_0_1px_rgba(255,255,255,0.04)]";
-
 const Label: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/80">
     {children}
   </div>
 );
-
 export const SkillVisuals: React.FC<{
   radar: RadarPoint[];
   bars: BarPoint[];
@@ -40,7 +36,6 @@ export const SkillVisuals: React.FC<{
           </div>
           <Label>Radar</Label>
         </div>
-
         <div className="mt-5 h-[280px]">
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={radar}>
@@ -66,7 +61,6 @@ export const SkillVisuals: React.FC<{
           </ResponsiveContainer>
         </div>
       </div>
-
       <div className={card + " p-6"}>
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -75,7 +69,6 @@ export const SkillVisuals: React.FC<{
           </div>
           <Label>Barras</Label>
         </div>
-
         <div className="mt-5 h-[280px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={bars} layout="vertical" margin={{ left: 20, right: 10 }}>
@@ -110,3 +103,5 @@ export const SkillVisuals: React.FC<{
     </div>
   );
 };
+
+export default SkillVisuals;

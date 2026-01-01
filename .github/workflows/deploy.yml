@@ -39,14 +39,14 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist'  # ← CRÍTICO: 'dist' NÃO '.'
+          path: 'dist'  # ← IMPORTANTE: 'dist' não '.'
 
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: build  # ← ESPERA o job 'build'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

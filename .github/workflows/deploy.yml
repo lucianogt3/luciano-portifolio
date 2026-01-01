@@ -39,8 +39,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # ⬇️⬇️⬇️ IMPORTANTE: Mudar de '.' para 'dist' ⬇️⬇️⬇️
-          path: 'dist'  # ← SUA PASTA BUILDADA
+          path: 'dist'  # ← CRÍTICO: 'dist' NÃO '.'
 
   deploy:
     environment:

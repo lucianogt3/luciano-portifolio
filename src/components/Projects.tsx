@@ -1,3 +1,1 @@
-import React from 'react';
-const Projects = () => <section id="projects" className="py-12"><h2>Projetos</h2><p>Em desenvolvimento.</p></section>;
-export default Projects;
+import React from 'react'; export default () => <section className='py-12'><h2>Projects</h2></section>;

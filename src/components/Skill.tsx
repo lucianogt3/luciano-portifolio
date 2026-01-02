@@ -1,82 +1,107 @@
-import React from 'react';
-
-const Skills: React.FC = () => {
-  const healthcareSkills = [
-    'Gestão de UTI e Emergência', 'Acreditação Hospitalar (ONA)', 'Auditoria em Saúde',
-    'Gestão de Equipes Multidisciplinares', 'Protocolos Clínicos', 'Indicadores de Qualidade',
-    'Segurança do Paciente', 'Processos Hospitalares', 'Treinamento e Capacitação'
-  ];
-
-  const techSkills = [
-    'React & TypeScript', 'JavaScript (ES6+)', 'HTML5 & CSS3', 'Tailwind CSS',
-    'Git & GitHub', 'Análise de Dados', 'Metodologias Ágeis', 'UX/UI Básico',
-    'Lógica de Programação'
-  ];
-
-  const transferableSkills = [
-    'Gestão de Projetos Complexos', 'Tomada de Decisão sob Pressão', 'Análise Crítica de Dados',
-    'Comunicação Multidisciplinar', 'Liderança de Equipes', 'Resolução de Problemas',
-    'Pensamento Sistêmico', 'Melhoria Contínua (PDCA)', 'Gestão de Processos'
-  ];
-
+import React from "react";
+import {
+  ResponsiveContainer,
+  RadarChart,
+  Radar,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+} from "recharts";
+type RadarPoint = { area: string; score: number };
+type BarPoint = { name: string; value: number };
+const card =
+  "rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl shadow-[0_0_0_1px_rgba(255,255,255,0.04)]";
+const Label: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/80">
+    {children}
+  </div>
+);
+export const SkillVisuals: React.FC<{
+  radar: RadarPoint[];
+  bars: BarPoint[];
+}> = ({ radar, bars }) => {
   return (
-    <section id="skills" className="py-16">
-      <h2 className="section-title">Competências</h2>
-      
-      <div className="grid md:grid-cols-3 gap-8">
-        {/* Saúde */}
-        <div className="project-card p-6">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-              <span className="text-2xl">🏥</span>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900">Experiência em Saúde</h3>
+    <div className="grid gap-6 lg:grid-cols-2">
+      <div className={card + " p-6"}>
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h3 className="text-lg font-semibold text-white">Mapa de competências</h3>
+            <p className="mt-1 text-sm text-white/70">Visão geral (0–100)</p>
           </div>
-          <div className="flex flex-wrap gap-2">
-            {healthcareSkills.map((skill, index) => (
-              <span key={index} className="skill-badge bg-red-50 text-red-700">
-                {skill}
-              </span>
-            ))}
-          </div>
+          <Label>Radar</Label>
         </div>
-
-        {/* Tecnologia */}
-        <div className="project-card p-6">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-              <span className="text-2xl">💻</span>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900">Tecnologia (Em Desenvolvimento)</h3>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {techSkills.map((skill, index) => (
-              <span key={index} className="skill-badge bg-blue-50 text-blue-700">
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Transferíveis */}
-        <div className="project-card p-6">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-              <span className="text-2xl">🔄</span>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900">Competências Transferíveis</h3>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {transferableSkills.map((skill, index) => (
-              <span key={index} className="skill-badge bg-green-50 text-green-700">
-                {skill}
-              </span>
-            ))}
-          </div>
+        <div className="mt-5 h-[280px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <RadarChart data={radar}>
+              <PolarGrid stroke="rgba(255,255,255,0.12)" />
+              <PolarAngleAxis
+                dataKey="area"
+                tick={{ fill: "rgba(255,255,255,0.75)", fontSize: 12 }}
+              />
+              <PolarRadiusAxis
+                angle={90}
+                domain={[0, 100]}
+                tick={{ fill: "rgba(255,255,255,0.45)", fontSize: 11 }}
+                stroke="rgba(255,255,255,0.12)"
+              />
+              <Radar
+                name="Competência"
+                dataKey="score"
+                stroke="rgba(245, 158, 11, 0.9)"
+                fill="rgba(245, 158, 11, 0.25)"
+                strokeWidth={2}
+              />
+            </RadarChart>
+          </ResponsiveContainer>
         </div>
       </div>
-    </section>
+      <div className={card + " p-6"}>
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h3 className="text-lg font-semibold text-white">Foco técnico</h3>
+            <p className="mt-1 text-sm text-white/70">Experiência prática (0–100)</p>
+          </div>
+          <Label>Barras</Label>
+        </div>
+        <div className="mt-5 h-[280px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={bars} layout="vertical" margin={{ left: 20, right: 10 }}>
+              <CartesianGrid stroke="rgba(255,255,255,0.08)" horizontal={false} />
+              <XAxis
+                type="number"
+                domain={[0, 100]}
+                tick={{ fill: "rgba(255,255,255,0.55)", fontSize: 11 }}
+                stroke="rgba(255,255,255,0.18)"
+              />
+              <YAxis
+                type="category"
+                dataKey="name"
+                width={110}
+                tick={{ fill: "rgba(255,255,255,0.78)", fontSize: 12 }}
+                stroke="rgba(255,255,255,0.0)"
+              />
+              <Tooltip
+                cursor={{ fill: "rgba(255,255,255,0.06)" }}
+                contentStyle={{
+                  background: "rgba(2,6,23,0.92)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  borderRadius: 12,
+                  color: "white",
+                }}
+              />
+              <Bar dataKey="value" fill="rgba(245, 158, 11, 0.85)" radius={[10, 10, 10, 10]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default Skills;
+export default SkillVisuals;
